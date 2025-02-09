@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Loans</title>
+</head>
+<body>
+    <h1>Add Loan Details</h1>
+    <form method="post">
+        <label>Loan Amount:</label>
+        <input type="number" name="loan_amount" required><br>
+        
+        <label>Total EMI Months:</label>
+        <input type="number" name="emi_months" required><br>
+
+        <label>Current EMI Number:</label>
+        <input type="number" name="current_emi" required><br>
+
+        <label>Interest Rate (Annual %):</label>
+        <input type="number" name="interest" required><br>
+
+        <button type="submit" name="add_more">Add Another Loan</button>
+        <button type="submit">Next</button>
+    </form>
+
+    <h2>Existing Loans</h2>
+    <ul>
+        {% for loan in loans %}
+            <li>
+                Loan Amount: {{ loan.loan_amount }}, EMI Months: {{ loan.emi_months }}, Current EMI: {{ loan.current_emi }}, Interest: {{ loan.interest }}%
+                <form method="post" style="display:inline;">
+                    <button type="submit" name="delete" value="{{ loop.index0 }}">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
